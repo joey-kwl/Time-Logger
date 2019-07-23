@@ -86,9 +86,10 @@ class StatusSign extends Component {
 	}
 	
 	render() {
-		console.log(this.state.sign)
+		console.log(this.state.sign.toString())
+		const a = this.state.sign.toString()
 		return (
-			<div>{this.state.sign}</div>
+			<div>{a}</div>
 		);
 	}
 }
