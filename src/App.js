@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-// import ApiCalendar from 'react-google-calendar-api'
+import ApiCalendar from 'react-google-calendar-api'
 
 import Login from './components/Login'
 import Stop from './components/Stop'
 import StartButton from './components/StartButton';
 
-import StatusSign from './components/StatusSign'
+// import StatusSign from './components/StatusSign'
 
 
 class App extends Component {
@@ -14,7 +14,6 @@ class App extends Component {
 		this.state = {
 			running: false,
 			startTime: new Date(),
-			sign: <StatusSign/>
 		}
 		this.trackingTime = this.trackingTime.bind(this)
 		this.setType = this.setType.bind(this)
@@ -59,10 +58,37 @@ class App extends Component {
 				<Login/>
 				{stopButton}
 				{start}
-				{<StatusSign/>}
+				<StatusSign/>
 			</div>
 		)
 	}
 }
 
 export default App;
+
+class StatusSign extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sign: ApiCalendar.sign,
+		};
+
+		this.signUpdate = this.signUpdate.bind(this);
+		ApiCalendar.onLoad(() => {
+			ApiCalendar.listenSign(this.signUpdate);
+		});
+	}
+
+	signUpdate(sign) {
+		this.setState({
+			sign
+		})
+	}
+	
+	render() {
+		console.log(this.state.sign)
+		return (
+			<div>{this.state.sign}</div>
+		);
+	}
+}
