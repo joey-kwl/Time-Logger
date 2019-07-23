@@ -19,7 +19,7 @@ class App extends Component {
 		this.setType = this.setType.bind(this)
 
 	}
-	
+
 	trackingTime(running) {
 		this.setState({
 			running: running
@@ -36,9 +36,9 @@ class App extends Component {
 	render() {
 		let stopButton;
 		let start;
-		
+
 		if (this.state.sign) {
-			
+
 			if (this.state.running) {
 				stopButton = <Stop startTime={this.state.startTime} type={this.state.type} click={this.trackingTime}/>
 				start = '';
@@ -75,16 +75,18 @@ class StatusSign extends Component {
 
 		this.signUpdate = this.signUpdate.bind(this);
 		ApiCalendar.onLoad(() => {
+			this.signUpdate(ApiCalendar.sign);
 			ApiCalendar.listenSign(this.signUpdate);
 		});
 	}
 
 	signUpdate(sign) {
+		console.log(`TEST: ${sign}`);
 		this.setState({
 			sign
 		})
 	}
-	
+
 	render() {
 		console.log(this.state.sign.toString())
 		const a = this.state.sign.toString()
