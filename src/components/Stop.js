@@ -40,7 +40,7 @@ class Stop extends PureComponent {
 
 	render() {
 		return (
-			<div>
+			<div className="stop">
 				<button onClick={this.saveToCalendar}>Stop</button>
 			</div>
 		)

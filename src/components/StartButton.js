@@ -12,8 +12,10 @@ class StartButton extends Component {
 
 	render() {
 		return(
-			<div>
-				<button onClick={this.setType}>{this.props.title}</button>
+			<div className="button">
+				<button
+				className="start-button" 
+				onClick={this.setType}>{this.props.title}</button>
 			</div>
 		)
 	}

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ApiCalendar from 'react-google-calendar-api'
 
-import Login from './components/Login'
+import Auth from './components/Auth'
 import Stop from './components/Stop'
 import StartButton from './components/StartButton';
+import Stopwatch from './components/Stopwatch';
 
-// import StatusSign from './components/StatusSign'
-
+import './App.css';
 
 class App extends Component {
 	constructor(props) {
@@ -14,10 +14,23 @@ class App extends Component {
 		this.state = {
 			running: false,
 			startTime: new Date(),
+			useStopwatch: true,
 		}
+
 		this.trackingTime = this.trackingTime.bind(this)
 		this.setType = this.setType.bind(this)
 
+		this.signUpdate = this.signUpdate.bind(this);
+		ApiCalendar.onLoad(() => {
+			this.signUpdate(ApiCalendar.sign);
+			ApiCalendar.listenSign(this.signUpdate);
+		});
+	}
+
+	signUpdate(sign) {
+		this.setState({
+			sign: sign
+		})
 	}
 	
 	trackingTime(running) {
@@ -36,29 +49,45 @@ class App extends Component {
 	render() {
 		let stopButton;
 		let start;
+		let stopwatch = '00:00:00';
 		
 		if (this.state.sign) {
 			
 			if (this.state.running) {
 				stopButton = <Stop startTime={this.state.startTime} type={this.state.type} click={this.trackingTime}/>
 				start = '';
+				
+				if (this.state.useStopwatch) {
+					stopwatch = <Stopwatch/>
+				} else {
+					stopwatch = 'Running without stopwatch'
+				}
 			} else {
-				start = <div>
-					<StartButton title="Working" setType={this.setType}/>
-					<StartButton title="Sleeping" setType={this.setType}/>
-					<StartButton title="Gaming" setType={this.setType}/>
-					<StartButton title="Eating" setType={this.setType}/>
+				start = <div className="buttons">
+					<div className="button-group">
+						<StartButton title="Work" setType={this.setType}/>
+						<StartButton title="Sleep" setType={this.setType}/>
+						<StartButton title="Sleep" setType={this.setType}/>
+					</div>
+
+					<div className="button-group">
+						<StartButton title="Game" setType={this.setType}/>
+						<StartButton title="Eat" setType={this.setType}/>
+						<StartButton title="Music" setType={this.setType}/>
+					</div>
 				</div>;
 				stopButton = ''
 			}
 		}
 
 		return(
-			<div>
-				<Login/>
-				{stopButton}
+			<div className="app">
+				<Auth sign={this.state.sign}/>
+				<div className="stopwatch">
+					{stopwatch}
+				</div>
 				{start}
-				<StatusSign/>
+				{stopButton}
 			</div>
 		)
 	}
@@ -66,30 +95,34 @@ class App extends Component {
 
 export default App;
 
-class StatusSign extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			sign: ApiCalendar.sign,
-		};
+// class StatusSign extends Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.state = {
+// 			sign: ApiCalendar.sign,
+// 		};
 
-		this.signUpdate = this.signUpdate.bind(this);
-		ApiCalendar.onLoad(() => {
-			ApiCalendar.listenSign(this.signUpdate);
-		});
-	}
+// 		this.signUpdate = this.signUpdate.bind(this);
+// 		ApiCalendar.onLoad(() => {
+// 			this.setState({
+// 				sign: ApiCalendar.sign
+// 			});
 
-	signUpdate(sign) {
-		this.setState({
-			sign
-		})
-	}
+// 			ApiCalendar.listenSign(this.signUpdate);
+// 		});
+// 	}
+
+// 	signUpdate(sign) {
+// 		this.setState({
+// 			sign
+// 		})
+// 	}
 	
-	render() {
-		console.log(this.state.sign.toString())
-		const a = this.state.sign.toString()
-		return (
-			<div>{a}</div>
-		);
-	}
-}
+// 	render() {
+// 		console.log(this.state.sign.toString())
+// 		const a = this.state.sign.toString()
+// 		return (
+// 			<div>{a}</div>
+// 		);
+// 	}
+// }
