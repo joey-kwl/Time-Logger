@@ -46,10 +46,13 @@ body{
 	height: 50px;
 	margin: 20px 0;
 	font-size: 30px;
+	border-radius: 5px;
+
 }
 
 button:hover{
 	cursor: pointer;
+	
 }
 
 .stopwatch{
@@ -75,6 +78,7 @@ button:hover{
 	margin: 20px 0;
 	font-size: 30px;
 	color: white;
+	border-radius: 5px;
 }
 
 @media (max-width: 775px) {

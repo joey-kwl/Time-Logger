@@ -7,7 +7,7 @@
     "react-dom": "^16.8.6",
     "react-google-calendar-api": "^1.0.10",
     "react-scripts": "3.0.1",
-    "react-stopwatch": "^2.0.3"
+    "react-stopwatch": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
