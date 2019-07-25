@@ -13,7 +13,7 @@ class App extends Component {
 		super(props)
 		this.state = {
 			running: false,
-			startTime: new Date(),
+			startTime: '',
 			useStopwatch: true,
 		}
 
@@ -42,7 +42,8 @@ class App extends Component {
 	setType(name) {
 		this.setState({
 			type: name,
-			running: true
+			running: true,
+			startTime: new Date()
 		});
 	}
 

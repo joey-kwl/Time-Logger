@@ -4,7 +4,6 @@ import ApiCalendar from 'react-google-calendar-api';
 class Stop extends PureComponent {
 	constructor(props) {
 		super(props)
-		this.timeNow = new Date();
 		this.saveToCalendar = this.saveToCalendar.bind(this);
 		this.state = {
 			type: ''
@@ -14,15 +13,13 @@ class Stop extends PureComponent {
 	saveToCalendar() {
 		this.props.click(false)
 		let summary;
+		let timeNow = new Date();
 		
 		if (this.props.title) {
 			summary = `${this.props.type} - ${this.props.title}`;
 		} else {
 			summary = this.props.type;
 		}
-
-		console.log(this.props.startTime)
-		console.log(this.timeNow)
 
 		ApiCalendar.createEvent(
 			{
@@ -31,13 +28,13 @@ class Stop extends PureComponent {
 					dateTime: this.props.startTime,
 				},
 				end: {
-					dateTime: this.timeNow
+					dateTime: timeNow
 				}
 				
 			},
 			ApiCalendar.calendar
 		).then(result => {
-			console.log(result)
+			console.log('Saved')
 		})
 	}
 
