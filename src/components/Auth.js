@@ -23,9 +23,9 @@ class Login extends Component{
 		let button;
 		
 		if (this.props.sign) {
-			button = <button onClick={(e) => this.handleItemClick(e, 'sign-out')}> Logout </button>
+			button = <button className="auth-button logout" onClick={(e) => this.handleItemClick(e, 'sign-out')}> Logout </button>
 		} else {
-			button = <button onClick={(e) => this.handleItemClick(e, 'sign-in')}> Login </button>;
+			button = <button className="auth-button login" onClick={(e) => this.handleItemClick(e, 'sign-in')}> Login </button>;
 		}
 		return (
 			<div className="auth">

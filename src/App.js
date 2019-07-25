@@ -17,7 +17,7 @@ class App extends Component {
 			useStopwatch: true,
 		}
 
-		this.trackingTime = this.trackingTime.bind(this)
+		this.setRunning = this.setRunning.bind(this)
 		this.setType = this.setType.bind(this)
 
 		this.signUpdate = this.signUpdate.bind(this);
@@ -33,7 +33,7 @@ class App extends Component {
 		})
 	}
 	
-	trackingTime(running) {
+	setRunning(running) {
 		this.setState({
 			running: running
 		})
@@ -54,7 +54,7 @@ class App extends Component {
 		if (this.state.sign) {
 			
 			if (this.state.running) {
-				stopButton = <Stop startTime={this.state.startTime} type={this.state.type} click={this.trackingTime}/>
+				stopButton = <Stop startTime={this.state.startTime} type={this.state.type} click={this.setRunning}/>
 				start = '';
 				
 				if (this.state.useStopwatch) {
@@ -67,7 +67,7 @@ class App extends Component {
 					<div className="button-group">
 						<StartButton title="Work" setType={this.setType}/>
 						<StartButton title="Sleep" setType={this.setType}/>
-						<StartButton title="Sleep" setType={this.setType}/>
+						<StartButton title="Movie" setType={this.setType}/>
 					</div>
 
 					<div className="button-group">

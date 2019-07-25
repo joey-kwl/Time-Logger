@@ -21,6 +21,9 @@ class Stop extends PureComponent {
 			summary = this.props.type;
 		}
 
+		console.log(this.props.startTime)
+		console.log(this.timeNow)
+
 		ApiCalendar.createEvent(
 			{
 				summary: summary,
