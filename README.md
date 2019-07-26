@@ -6,7 +6,9 @@ This application is built with ReactJS as practice for myself. I'm new with Reac
 You need your basic ReactJS and NPM stuff.
 
 Install: `npm install`
+
 Start: `npm start`
+
 Build: `npm run-script build`
 
 
