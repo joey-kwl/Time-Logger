@@ -95,35 +95,3 @@ class App extends Component {
 }
 
 export default App;
-
-// class StatusSign extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.state = {
-// 			sign: ApiCalendar.sign,
-// 		};
-
-// 		this.signUpdate = this.signUpdate.bind(this);
-// 		ApiCalendar.onLoad(() => {
-// 			this.setState({
-// 				sign: ApiCalendar.sign
-// 			});
-
-// 			ApiCalendar.listenSign(this.signUpdate);
-// 		});
-// 	}
-
-// 	signUpdate(sign) {
-// 		this.setState({
-// 			sign
-// 		})
-// 	}
-	
-// 	render() {
-// 		console.log(this.state.sign.toString())
-// 		const a = this.state.sign.toString()
-// 		return (
-// 			<div>{a}</div>
-// 		);
-// 	}
-// }
